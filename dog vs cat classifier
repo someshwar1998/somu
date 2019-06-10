@@ -8,8 +8,8 @@ from random import shuffle
 import cv2
 from google.colab import drive 
 drive.mount("/content/drive")
-train_file=("/content/drive/My Drive/colab Notebooks/train.zip")
-test_file=("/content/drive/My Drive/colab Notebooks/test.zip")
+train_file=("/content/drive/My Drive/Colab Notebooks/train.zip")
+test_file=("/content/drive/My Drive/Colab Notebooks/test.zip")
 import zipfile
 with zipfile.ZipFile(train_file,'r') as z:
   z.extractall()
@@ -27,11 +27,11 @@ def label_image(img):
   elif img_name=="dog":
     return [0,1]
 def create_train_data():
-  training_data-[]
+  training_data=[]
   for img in tqdm(os.listdir(TRAIN_DIR)):
     label=label_image(img)
     path=os.path.join(TRAIN_DIR,img)
-    img=cv2.imread(path,cv2.IMREAD_GARYSCALE)
+    img=cv2.imread(path,cv2.IMREAD_GRAYSCALE)
     img=cv2.resize(img,(IMG_SIZE,IMG_SIZE))
     training_data.append([np.array(img),np.array(label)])
   shuffle(training_data) 
